@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Инвестировать сейчас</title>
+    <meta name="description" content="Инвестировать сейчас">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:500&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="shortcut icon" href="./media/favicon16.png" type="image/png">
+    <link rel="manifest" href="./manifest.json" />
+  </head>
+  <body>
+    <form autocomplete="off">
+      <h1>Инвестировать сейчас</h1>
+      
+      <div class='params'>
+        <div class='row sum'>
+          <label class="label label_l" for='input-inv-sum'>Сумма инвестиции</label>
+          <div class='wrapper'>
+            <span class='input-symbol'>$</span>
+            <input id='input-inv-sum' min='100' max='200000' value='5000' type="number" required>
+          </div>
+        </div>        
+        <div class='row multiply'>
+          <label class="label label_l" for='input-inv-multiply'>Мультипликатор</label>
+          <div class='wrapper'>
+            <span class='input-symbol'>&#215;</span>
+            <input id='input-inv-multiply' type='number' min='1' max='40' step='1' value='40' required>
+            <span class='multiply-result'>200 000</span>
+          </div>
+        </div>        
+      </div>
+
+
+      <div class='range-main-div range-main-div_hidden'>
+        <div class="triangle"></div>
+        <div class='range-first-wrapper'>
+          <div class='range-wrapper'>
+            <input type='range' class='range-input' min='1' max='40' step='1' value='40' >
+            <div class='ticks'>
+              <!-- Идея в том, чтобы задать с помощью флексбокса 
+                      величину спанов так, чтобы они были под нужными метками -->
+              <span class='tick tick-1'>1</span>
+              <span class='tick tick-5'>5</span>
+              <span class='tick tick-10'></span>
+              <span class='tick tick-20'>20</span>
+              <span class='tick tick-40'>40</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class='refinements'>
+        <div class='refinements-header'>
+          <img class='expand-button expand-button_collapsed' src='./media/expand-button.svg' alt='' />
+          <h2>Ограничить прибыль и убыток</h2>
+        </div>
+        <div class='refinements-settings refinements-settings_hidden'>
+          <div class='row radio'>
+            <label class="label label_l">Ограничения в</label>
+            <div class='wrapper-radio'>
+              <input type="radio" id='radio-percent' name='inp-radio' value="%">
+              <label class='inp-radio-label' for='radio-percent'>%</label>
+              <input type="radio" id='radio-dollar' name='inp-radio' value="$" checked>
+              <label class='inp-radio-label' for='radio-dollar'>$</label>
+            </div>
+            </div>
+          <div class='row profit'>
+            <input id='checkbox-profit' type='checkbox'>
+            <label class="label label_s" for='checkbox-profit'>Прибыль</label>
+            <div class='wrapper'>
+              <span class='input-symbol'>$</span>
+              <input id='input-ref-profit' min='500' type="number" disabled>
+            </div>
+          </div>  
+          <div class='row loss'>
+            <input id='checkbox-loss' type='checkbox'>
+            <label class="label label_s" for='checkbox-loss'>Убыток</label>
+            <div class='wrapper'>
+              <span class='input-symbol'>$</span>
+              <input id='input-ref-loss' min='500' type="number" disabled>
+            </div>
+          </div>         
+        </div>
+      </div> 
+
+      <div class='filler'></div>
+
+      <div class='row buttons'>
+        <div class='button' data-direction='reduction'>
+          <span class='arrow arrow_red'>&#8595;</span>
+          <span class='button-main button-main_red'>В снижение</span>
+        </div>
+        <div class='button' data-direction='growth'>
+          <span class='arrow arrow_green'>&#8593;</span>
+          <span class='button-main button-main_green'>В рост</span>
+        </div>
+      </div>  
+
+      <!-- Так как у нас есть развилка куда пользователь может 
+      отправить форму (в снижение или в рост), отключаем отправку 
+      по нажатию Enter. Простой кроссбраузерный способ HTML-only:
+      Нажатие на Enter пытается отправить форму с помощью дефолтной 
+      кнопки. Браузер назначает дефолтной первую встречную кнопку с 
+      с типом submit. Поэтому мы создаем отключенную пустую невидимую
+      кнопку этого типа первой в ДОМе (в данном случае единственной) -->
+      <button type="submit" disabled style="display: none" ></button>
+
+    </form>
+        <script src="main.js" async defer></script>
+  </body>
+</html>
